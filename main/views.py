@@ -7,7 +7,8 @@ from django.contrib.auth.decorators import login_required
 
 def home(request): 
     
-    return HttpResponse('Hello world')
+    # return HttpResponse('Hello world')
+    return render(request ,'index.html')
 
 
 from django.views.decorators.csrf import csrf_exempt

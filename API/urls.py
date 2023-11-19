@@ -11,3 +11,5 @@ urlpatterns = [
 
     # path('', views.DataViewSet, name='all data'),
 ]
+
+
