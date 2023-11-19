@@ -64,7 +64,7 @@ class Source(models.Model):
 
 class Data(models.Model):
     end_year = models.CharField(null=True, max_length=10)
-    intencity = models.CharField(null=True, max_length=10)
+    intensity = models.CharField(null=True, max_length=10)
     sector = models.ForeignKey(Sector, on_delete=models.SET_NULL, null=True)
     topic = models.ForeignKey(Topic, on_delete=models.SET_NULL, null=True)
     insight = models.CharField(max_length=100)

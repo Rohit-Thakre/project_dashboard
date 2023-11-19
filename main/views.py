@@ -1,9 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from main.models import *
-
+# from django.contrib.auth import login , logout
+from django.contrib.auth.decorators import login_required
 # Create your views here.
-
 
 def home(request): 
     
@@ -16,7 +16,9 @@ import json
 def read_json(request): 
     if request.method == 'POST': 
         payload = json.loads(request.body)
-        # print(payload[0])
+        print(payload[0])
+        print(payload[0].get('intensity'))
+
         created = None
 
         for instance in payload:
@@ -30,7 +32,7 @@ def read_json(request):
 
             data_obj,created = Data.objects.get_or_create(
                 end_year = instance.get('end_year'),
-                intencity = instance.get('intencity'),
+                intensity = instance.get('intensity'),
                 sector = sector_obj,
                 topic = topic_obj,
                 insight = instance.get('insight'),
@@ -39,6 +41,7 @@ def read_json(request):
                 start_year = instance.get('start_year'),
                 impact = instance.get('impact'),
                 added = instance.get('added'),
+                published = instance.get('published'),
                 country = country_obj,
                 relevance = instance.get('relevance'),
                 pestle = pestle_obj,
@@ -46,6 +49,7 @@ def read_json(request):
                 title = instance.get('title'),
                 likelihood = instance.get('likelihood'),
                 )
+            
 
         return HttpResponse('data saved in db')
 
