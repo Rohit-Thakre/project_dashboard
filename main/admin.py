@@ -5,7 +5,7 @@ from main import models
 
 @admin.register(models.Data)
 class AdminUser(admin.ModelAdmin):
-    list_display = ['id', 'end_year', 'intencity',  'topic', 'insight', 'url', 'region', 'start_year']
+    list_display = ['id', 'end_year', 'intensity',  'topic', 'insight', 'url', 'region', 'start_year']
 
 
 
