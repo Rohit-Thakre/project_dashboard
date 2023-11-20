@@ -4,11 +4,14 @@ from main.models import *
 # from django.contrib.auth import login , logout
 from django.contrib.auth.decorators import login_required
 # Create your views here.
-
+from API.serializers import DataSerializer
 def home(request): 
+    data = Data.objects.all()
+    
+    context = {'data' : data}
     
     # return HttpResponse('Hello world')
-    return render(request ,'index.html')
+    return render(request ,'index.html', context)
 
 
 from django.views.decorators.csrf import csrf_exempt
