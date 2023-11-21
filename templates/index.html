@@ -189,30 +189,46 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-md-6 mb-3">
+          <div class="col-12">
+            <!-- <div class="col-md-6 mb-3"> -->
             <div class="card h-100">
               <div class="card-header">
                 <span class="me-2"><i class="bi bi-bar-chart-fill"></i></span>
-                Area Chart Example
+                Intensity
               </div>
-
               <div class="card-body">
                 <canvas class="chart" id="fstChart" width="400" height="200"></canvas>
               </div>
-
             </div>
           </div>
-          <div class="col-md-6 mb-3">
+
+          <div class="col-12">
+            <!-- <div class="col-md-6 mb-3"> -->
             <div class="card h-100">
               <div class="card-header">
                 <span class="me-2"><i class="bi bi-bar-chart-fill"></i></span>
-                Area Chart Example
+                Likelihood
               </div>
               <div class="card-body">
-                <canvas class="chart" width="400" height="200"></canvas>
+                <canvas class="chart" id="likelihoodid" width="400" height="200"></canvas>
               </div>
             </div>
           </div>
+
+
+          <div class="col-12">
+            <!-- <div class="col-md-6 mb-3"> -->
+            <div class="card h-100">
+              <div class="card-header">
+                <span class="me-2"><i class="bi bi-bar-chart-fill"></i></span>
+                Impact
+              </div>
+              <div class="card-body">
+                <canvas class="chart" id="impactid" width="400" height="200"></canvas>
+              </div>
+            </div>
+          </div>
+
         </div>
         <div class="row">
           <div class="col-md-12 mb-3">
@@ -225,31 +241,36 @@
                   <table id="example" class="table table-striped data-table" style="width: 100%">
                     <thead>
                       <tr>
-                        <th>Name</th>
-                        <th>Position</th>
-                        <th>Office</th>
-                        <th>Age</th>
-                        <th>Start date</th>
-                        <th>Salary</th>
+                        <th>ID</th>
+                        <th>TITLE</th>
+                        <th>Intensity</th>
+                        <th>Sector</th>
+                        <th>Region</th>
+                        <th>StartYear</th>
+                        <th>Country</th>
+                        <th>Relevance</th>
+                        <th>Pestle</th>
+                        <th>Source</th>
+                        <th>Likelihood</th>
                       </tr>
                     </thead>
                     <tbody>
+
+                      {% for obj in data %}
                       <tr>
-                        <td>Tiger Nixon</td>
-                        <td>System Architect</td>
-                        <td>Edinburgh</td>
-                        <td>61</td>
-                        <td>2011/04/25</td>
-                        <td>$320,800</td>
+                        <td>{{obj.id}}</td>
+                        <td>{{obj.title}}</td>
+                        <td>{{obj.intensity}}</td>
+                        <td>{{obj.sector}}</td>
+                        <td>{{obj.region}}</td>
+                        <td>{{obj.start_year}}</td>
+                        <td>{{obj.country}}</td>
+                        <td>{{obj.relevance}}</td>
+                        <td>{{obj.pestle}}</td>
+                        <td>{{obj.source}}</td>
+                        <td>{{obj.likelihood}}</td>
                       </tr>
-                      <tr>
-                        <td>Garrett Winters</td>
-                        <td>Accountant</td>
-                        <td>Tokyo</td>
-                        <td>63</td>
-                        <td>2011/07/25</td>
-                        <td>$170,750</td>
-                      </tr>
+                      {% endfor %}
 
                     </tbody>
                     <tfoot>
@@ -281,8 +302,106 @@
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
       crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="{% static 'script.js' %}"></script>
+    <!-- <script src="{% static 'script.js' %}"></script> -->
 
+
+    <script>
+      // let title = {{ titles | safe }};
+      let title = [{% for obj in data %} "{{obj.title}}", {% endfor %}];
+
+      // let intensity = {{ intensity | safe }};
+      let intensity = [{% for obj in data %} "{{obj.intensity}}", {% endfor %}];
+
+      // let id_list = {{ id_list| safe }};
+      let id_list = [{% for obj in data %} "{{obj.id}}", {% endfor %}];
+
+
+      const ctx = document.getElementById('fstChart');
+
+
+      new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: id_list.slice(0, 50),
+          datasets: [{
+            label: '# of Votes',
+            data: intensity.slice(0, 50),
+            borderWidth: 1,
+            fill: false,
+            borderColor: 'red',
+            tension: 0.1
+          }]
+        },
+        // options: {
+        //   scales: {
+        //     y: {
+        //       beginAtZero: true
+        //     }
+        //   }
+        // }
+
+      });
+
+
+      const likelihoodid = document.getElementById('likelihoodid');
+      // let date = [{% for obj in data %} '{{obj.published}}', {% endfor %}];
+      let likelihood = [{% for obj in data %} "{{obj.likelihood}}", {% endfor %}];
+
+
+      new Chart(likelihoodid, {
+        type: 'bar',
+        data: {
+          labels: id_list.slice(0, 50),
+          datasets: [{
+            label: '# of Votes',
+            data: likelihood.slice(0, 50),
+            borderWidth: 1,
+            fill: false,
+            borderColor: 'red',
+            tension: 0.1
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+      });
+
+
+
+      const impactid = document.getElementById('impactid');
+      // let date = [{% for obj in data %} '{{obj.published}}', {% endfor %}];
+      let impact = [{% for obj in data %} "{{obj.impact}}", {% endfor %}];
+
+
+      new Chart(impactid, {
+        type: 'bar',
+        data: {
+          labels: id_list.slice(0, 50),
+          datasets: [{
+            label: '# of Votes',
+            data: impact.slice(0, 50),
+            borderWidth: 1,
+            fill: false,
+            borderColor: 'red',
+            tension: 0.1
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+      });
+
+
+
+    </script>
 
   </body>
 

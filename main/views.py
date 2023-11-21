@@ -5,13 +5,28 @@ from main.models import *
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 from API.serializers import DataSerializer
+
+from main.serializer import DataS
+
+
+
 def home(request): 
+    titles = []
+    intensity = []
+    id = []
+    publish_date = []
     data = Data.objects.all()
+
+    for obj in data: 
+        titles.append(obj.title)
+        intensity.append(obj.intensity)
+        id.append(obj.id)
+        publish_date.append(obj.published)
     
-    context = {'data' : data}
+    context = {'data':data,'titles': titles[:50], 'intensity': intensity[:50], 'id_list': id[:50], 'publish_date': publish_date[50] }
     
-    # return HttpResponse('Hello world')
     return render(request ,'index.html', context)
+
 
 
 from django.views.decorators.csrf import csrf_exempt
