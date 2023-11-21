@@ -229,6 +229,20 @@
             </div>
           </div>
 
+
+          <div class="col-6">
+            <!-- <div class="col-md-6 mb-3"> -->
+            <div class="card h-100">
+              <div class="card-header">
+                <span class="me-2"><i class="bi bi-bar-chart-fill"></i></span>
+                sector donout
+              </div>
+              <div class="card-body">
+                <canvas class="chart" id="sector_id" width="200" height="200"></canvas>
+              </div>
+            </div>
+          </div>
+
         </div>
         <div class="row">
           <div class="col-md-12 mb-3">
@@ -397,6 +411,26 @@
             }
           }
         }
+      });
+
+
+      const sectorid = document.getElementById('sector_id');
+      // let sector = [{% for obj in sector %} "{{sector.name}}", {% endfor %}];
+
+      let obj = {{ sector_count | safe}}
+
+      console.log(obj);
+
+      new Chart(sectorid, {
+        type: 'doughnut',
+        data: {
+          labels: Object.keys(obj),
+          datasets: [{
+            label: 'total',
+            data: Object.values(obj),
+            hoverOffset: 4
+          }],
+        },
       });
 
 

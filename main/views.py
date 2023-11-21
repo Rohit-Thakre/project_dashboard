@@ -17,13 +17,20 @@ def home(request):
     publish_date = []
     data = Data.objects.all()
 
+    sectorr = Sector.objects.all()
+    sector_count = dict()
+    for sector_obj in sectorr: 
+        sector_count[sector_obj.name] = Data.objects.filter(sector=sector_obj.id).count()
+    
+
+
     for obj in data: 
         titles.append(obj.title)
         intensity.append(obj.intensity)
         id.append(obj.id)
         publish_date.append(obj.published)
     
-    context = {'data':data,'titles': titles[:50], 'intensity': intensity[:50], 'id_list': id[:50], 'publish_date': publish_date[50] }
+    context = {'data':data, 'id_list': id[:50], 'sector_count' : sector_count}
     
     return render(request ,'index.html', context)
 
