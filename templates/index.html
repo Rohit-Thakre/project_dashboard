@@ -243,6 +243,20 @@
             </div>
           </div>
 
+          <div class="col-12">
+            <!-- <div class="col-md-6 mb-3"> -->
+            <div class="card h-100">
+              <div class="card-header">
+                <span class="me-2"><i class="bi bi-bar-chart-fill"></i></span>
+                Source
+              </div>
+              <div class="card-body">
+                <canvas class="chart" id="src_id" width="200" height="200"></canvas>
+              </div>
+            </div>
+          </div>
+
+
           <div class="col-6">
             <!-- <div class="col-md-6 mb-3"> -->
             <div class="card h-100">
@@ -252,6 +266,19 @@
               </div>
               <div class="card-body">
                 <canvas class="chart" id="country_id" width="200" height="200"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <!-- <div class="col-md-6 mb-3"> -->
+            <div class="card h-100">
+              <div class="card-header">
+                <span class="me-2"><i class="bi bi-bar-chart-fill"></i></span>
+                start_end_year
+              </div>
+              <div class="card-body">
+                <canvas class="chart" id="st_end_yr" width="200" height="200"></canvas>
               </div>
             </div>
           </div>
@@ -390,16 +417,15 @@
 
       const impactid = document.getElementById('impactid');
       // let date = [{% for obj in data %} '{{obj.published}}', {% endfor %}];
-      let impact = [{% for obj in data %} "{{obj.impact}}", {% endfor %}];
-
-
+      // let impact = [{% for obj in data %}  "{{obj.impact}}", {% endfor %}];
+      let impact = { {%for obj in data %} {% if  obj.impact != '' %} '{{obj.id}}': '{{obj.impact}}', {% endif %} {% endfor %} }
       new Chart(impactid, {
         type: 'bar',
         data: {
-          labels: id_list.slice(0, 50),
+          labels: Object.keys(impact).slice(0, 100),
           datasets: [{
             label: '# of Votes',
-            data: impact.slice(0, 50),
+            data: Object.values(impact).slice(0, 100),
             borderWidth: 1,
             fill: false,
             borderColor: 'red',
@@ -437,10 +463,32 @@
 
       // --------------------------------------------------------------------------------------------
 
+      const src_id = document.getElementById('src_id');
+      // let sector = [{% for obj in sector %} "{{sector.name}}", {% endfor %}];
+
+      let src_cnt = {{ src_count | safe}};
+
+
+      new Chart(src_id, {
+        type: 'bar',
+        data: {
+          labels: Object.keys(src_cnt),
+          datasets: [{
+            label: 'total',
+            data: Object.values(src_cnt),
+            hoverOffset: 4
+          }],
+        },
+        options: {
+          indexAxis: 'y',
+        }
+      });
+      // ----------------------------------------------------
+
       const country_id = document.getElementById('country_id');
       // let sector = [{% for obj in sector %} "{{sector.name}}", {% endfor %}];
 
-      let country_cnt = {{ country_count | safe}}
+      let country_cnt = {{ country_count | safe}};
 
 
       new Chart(country_id, {
@@ -457,7 +505,79 @@
           indexAxis: 'y',
         }
       });
+      // ----------------------------------------------------
 
+
+
+
+      // ----------------------------------------------------
+
+      const st_end_yr = document.getElementById('st_end_yr');
+      start_year = {};
+      end_year = {};
+
+      {%for obj in data %}
+      {%if obj.start_year != '' and obj.end_year != '' %}
+      start_year['{{obj.id}}'] = {{ obj.start_year }};
+      end_year['{{obj.id}}'] = {{ obj.end_year }};
+      {% endif %}
+      {% endfor %}
+
+
+      new Chart(st_end_yr, {
+        type: 'bar',
+        data: {
+          labels: Object.keys(start_year).slice(0, 10),
+          datasets: [
+            {
+              label: 'start_year',
+              data: Object.values(start_year).slice(0, 10),
+              hoverOffset: 4
+            },
+            {
+              label: 'end_year',
+              data: Object.values(end_year).slice(0, 10),
+              hoverOffset: 4
+            }
+          ],
+        },
+        options: {
+          indexAxis: 'x',
+
+        }
+      });
+      // // ----------------------------------------------------
+
+
+
+      // ----------------------------------------------------
+
+
+
+
+      new Chart(st_end_yr, {
+        type: 'bar',
+        data: {
+          labels: Object.keys(start_year).slice(0, 10),
+          datasets: [
+            {
+              label: 'start_year',
+              data: Object.values(start_year).slice(0, 10),
+              hoverOffset: 4
+            },
+            {
+              label: 'end_year',
+              data: Object.values(end_year).slice(0, 10),
+              hoverOffset: 4
+            }
+          ],
+        },
+        options: {
+          indexAxis: 'x',
+
+        }
+      });
+      // // ----------------------------------------------------
 
 
 
