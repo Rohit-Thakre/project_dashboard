@@ -283,6 +283,20 @@
             </div>
           </div>
 
+
+          <div class="col-12">
+            <!-- <div class="col-md-6 mb-3"> -->
+            <div class="card h-100">
+              <div class="card-header">
+                <span class="me-2"><i class="bi bi-bar-chart-fill"></i></span>
+                topic count
+              </div>
+              <div class="card-body">
+                <canvas class="chart" id="topic_id" width="200" height="200"></canvas>
+              </div>
+            </div>
+          </div>
+
         </div>
         <div class="row">
           <div class="col-md-12 mb-3">
@@ -553,27 +567,25 @@
       // ----------------------------------------------------
 
 
+      topic = {{ tpk_count | safe }};
+      const topic_id = document.getElementById('topic_id');
+      console.log(topic);
 
 
-      new Chart(st_end_yr, {
+      new Chart(topic_id, {
         type: 'bar',
         data: {
-          labels: Object.keys(start_year).slice(0, 10),
+          labels: Object.keys(topic).slice(0, 25),
           datasets: [
             {
-              label: 'start_year',
-              data: Object.values(start_year).slice(0, 10),
+              label: 'Count',
+              data: Object.values(topic).slice(0, 25),
               hoverOffset: 4
             },
-            {
-              label: 'end_year',
-              data: Object.values(end_year).slice(0, 10),
-              hoverOffset: 4
-            }
           ],
         },
         options: {
-          indexAxis: 'x',
+          indexAxis: 'y',
 
         }
       });

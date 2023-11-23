@@ -9,7 +9,7 @@ from API.serializers import DataSerializer
 from main.serializer import DataS
 
 
-
+from collections import OrderedDict
 def home(request): 
     titles = []
     intensity = []
@@ -40,6 +40,22 @@ def home(request):
 
     
 
+    tpk = Topic.objects.all()
+    tpk_count = dict()
+
+    for tpk_obj in tpk: 
+        if tpk_obj.name =='':
+            tpk_count['blank'] = Data.objects.filter(topic = tpk_obj.id).count()
+            continue
+            
+        tpk_count[tpk_obj.name] = Data.objects.filter(topic = tpk_obj.id).count()
+
+
+    tpk_count = sorted(tpk_count.items(), key=lambda item: item[1], reverse=True)
+    sorted_dict = {}
+    for item in tpk_count: 
+        sorted_dict[item[0]] = item[1] 
+
 
     for obj in data: 
         titles.append(obj.title)
@@ -47,7 +63,7 @@ def home(request):
         id.append(obj.id)
         publish_date.append(obj.published)
     
-    context = {'data':data, 'id_list': id[:50], 'sector_count' : sector_count, 'country_count':country_count, "src_count" :src_count}
+    context = {'data':data, 'id_list': id[:50], 'sector_count' : sector_count, 'country_count':country_count, "src_count" :src_count, 'tpk_count': sorted_dict}
     
     return render(request ,'index.html', context)
 
