@@ -17,11 +17,25 @@ def home(request):
     publish_date = []
     data = Data.objects.all()
 
+
+    country = Country.objects.all()
+    country_count = dict()
+    for cnt in country: 
+        country_count[cnt.name] = Data.objects.filter(country = cnt.id).count()
+
+
     sectorr = Sector.objects.all()
     sector_count = dict()
     for sector_obj in sectorr: 
         sector_count[sector_obj.name] = Data.objects.filter(sector=sector_obj.id).count()
     
+
+
+    src = Source.objects.all()
+    scr_count = dict()
+
+    for src_obj in src: 
+        scr_count[src_obj.name] = Data.objects.filter(source = src_obj.id).count()
 
 
     for obj in data: 
@@ -30,7 +44,7 @@ def home(request):
         id.append(obj.id)
         publish_date.append(obj.published)
     
-    context = {'data':data, 'id_list': id[:50], 'sector_count' : sector_count}
+    context = {'data':data, 'id_list': id[:50], 'sector_count' : sector_count, 'country_count':country_count}
     
     return render(request ,'index.html', context)
 

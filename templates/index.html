@@ -243,6 +243,19 @@
             </div>
           </div>
 
+          <div class="col-6">
+            <!-- <div class="col-md-6 mb-3"> -->
+            <div class="card h-100">
+              <div class="card-header">
+                <span class="me-2"><i class="bi bi-bar-chart-fill"></i></span>
+                country bar
+              </div>
+              <div class="card-body">
+                <canvas class="chart" id="country_id" width="200" height="200"></canvas>
+              </div>
+            </div>
+          </div>
+
         </div>
         <div class="row">
           <div class="col-md-12 mb-3">
@@ -358,7 +371,6 @@
 
 
       const likelihoodid = document.getElementById('likelihoodid');
-      // let date = [{% for obj in data %} '{{obj.published}}', {% endfor %}];
       let likelihood = [{% for obj in data %} "{{obj.likelihood}}", {% endfor %}];
 
 
@@ -369,18 +381,8 @@
           datasets: [{
             label: '# of Votes',
             data: likelihood.slice(0, 50),
-            borderWidth: 1,
-            fill: false,
-            borderColor: 'red',
-            tension: 0.1
+
           }]
-        },
-        options: {
-          scales: {
-            y: {
-              beginAtZero: true
-            }
-          }
         }
       });
 
@@ -413,13 +415,12 @@
         }
       });
 
-
+      // --------------------------------------------------------------------------
       const sectorid = document.getElementById('sector_id');
       // let sector = [{% for obj in sector %} "{{sector.name}}", {% endfor %}];
 
       let obj = {{ sector_count | safe}}
 
-      console.log(obj);
 
       new Chart(sectorid, {
         type: 'doughnut',
@@ -432,6 +433,33 @@
           }],
         },
       });
+
+
+      // --------------------------------------------------------------------------------------------
+
+      const country_id = document.getElementById('country_id');
+      // let sector = [{% for obj in sector %} "{{sector.name}}", {% endfor %}];
+
+      let country_cnt = {{ country_count | safe}}
+
+
+      new Chart(country_id, {
+        type: 'doughnut',
+        data: {
+          labels: Object.keys(country_cnt),
+          datasets: [{
+            label: 'total',
+            data: Object.values(country_cnt),
+            hoverOffset: 4
+          }],
+        },
+        options: {
+          indexAxis: 'y',
+        }
+      });
+
+
+
 
 
 
