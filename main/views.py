@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from main.models import *
 # from django.contrib.auth import login , logout
@@ -11,6 +11,9 @@ from main.serializer import DataS
 
 from collections import OrderedDict
 def home(request): 
+
+  
+
     titles = []
     intensity = []
     id = []
@@ -20,12 +23,15 @@ def home(request):
 
 
     country = Country.objects.all()
+    tatal_country = country.count()
     country_count = dict()
     for cnt in country: 
-        country_count[cnt.name] = Data.objects.filter(country = cnt.id).count()
+        if cnt.name != '':
+            country_count[cnt.name] = Data.objects.filter(country = cnt.id).count()
 
 
     sectorr = Sector.objects.all()
+    total_sector = sectorr.count()
     sector_count = dict()
     for sector_obj in sectorr: 
         sector_count[sector_obj.name] = Data.objects.filter(sector=sector_obj.id).count()
@@ -36,7 +42,11 @@ def home(request):
     src_count = dict()
 
     for src_obj in src: 
-        src_count[src_obj.name] = Data.objects.filter(source = src_obj.id).count()
+        if len(src_obj.name) > 10:
+            src_count[src_obj.name[:10]+".."] = Data.objects.filter(source = src_obj.id).count()
+        else:
+            src_count[src_obj.name] = Data.objects.filter(source = src_obj.id).count()
+
 
     
 
@@ -63,8 +73,18 @@ def home(request):
         id.append(obj.id)
         publish_date.append(obj.published)
     
-    context = {'data':data, 'id_list': id[:50], 'sector_count' : sector_count, 'country_count':country_count, "src_count" :src_count, 'tpk_count': sorted_dict}
+    context = {'start': 0, 'end': 50, 'total_country' : tatal_country, 'tatal_sector': total_sector,'data':data,'data_total':data.count(), 'id_list': id[:50], 'sector_count' : sector_count, 'country_count':country_count, "src_count" :src_count, 'tpk_count': sorted_dict}
     
+
+    if request.method == 'POST':
+        start = request.POST.get('start')
+        end = request.POST.get('end')
+        context['start'] = start
+        context['end'] = end
+        print(context['start'], context['end'])
+        return render(request ,'index.html', context)
+
+
     return render(request ,'index.html', context)
 
 

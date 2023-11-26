@@ -27,38 +27,10 @@
           <span class="navbar-toggler-icon" data-bs-target="#sidebar"></span>
         </button>
         <a class="navbar-brand me-auto ms-lg-0 ms-3 text-uppercase fw-bold" href="#">Dashboard</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#topNavBar"
-          aria-controls="topNavBar" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="topNavBar">
-          <form class="d-flex ms-auto my-3 my-lg-0">
-            <div class="input-group">
-              <input class="form-control" type="search" placeholder="Search" aria-label="Search" />
-              <button class="btn btn-primary" type="submit">
-                <i class="bi bi-search"></i>
-              </button>
-            </div>
-          </form>
-          <ul class="navbar-nav">
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle ms-2" href="#" role="button" data-bs-toggle="dropdown"
-                aria-expanded="false">
-                <i class="bi bi-person-fill"></i>
-              </a>
-              <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </div>
       </div>
     </nav>
     <!-- top navigation bar -->
+
     <!-- offcanvas -->
     <div class="offcanvas offcanvas-start sidebar-nav bg-dark" tabindex="-1" id="sidebar">
       <div class="offcanvas-body p-0">
@@ -80,225 +52,246 @@
             </li>
             <li>
               <div class="text-muted small fw-bold text-uppercase px-3 mb-3">
-                Interface
+                <!-- <span class="me-2"><i class="bi bi-layout-split">Layouts</i></span> -->
+                Graphs
               </div>
             </li>
+
             <li>
-              <a class="nav-link px-3 sidebar-link" data-bs-toggle="collapse" href="#layouts">
-                <span class="me-2"><i class="bi bi-layout-split"></i></span>
-                <span>Layouts</span>
-                <span class="ms-auto">
-                  <span class="right-icon">
-                    <i class="bi bi-chevron-down"></i>
-                  </span>
-                </span>
-              </a>
-              <div class="collapse" id="layouts">
-                <ul class="navbar-nav ps-3">
-                  <li>
-                    <a href="#" class="nav-link px-3">
-                      <span class="me-2"><i class="bi bi-speedometer2"></i></span>
-                      <span>Dashboard</span>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </li>
-            <li>
-              <a href="#" class="nav-link px-3">
+              <a href="#intensity" class="nav-link px-3">
                 <span class="me-2"><i class="bi bi-book-fill"></i></span>
-                <span>Pages</span>
+                <span>Intensity</span>
               </a>
             </li>
-            <li class="my-4">
+            <li>
+              <a href="#likelihood" class="nav-link px-3">
+                <span class="me-2"><i class="bi bi-book-fill"></i></span>
+                <span>Likelihood</span>
+              </a>
+            </li>
+            <li>
+              <a href="#impact" class="nav-link px-3">
+                <span class="me-2"><i class="bi bi-book-fill"></i></span>
+                <span>Impact</span>
+              </a>
+            </li>
+            <li>
+              <a href="#sector" class="nav-link px-3">
+                <span class="me-2"><i class="bi bi-book-fill"></i></span>
+                <span>Sector</span>
+              </a>
+            </li>
+            <li>
+              <a href="#topic" class="nav-link px-3">
+                <span class="me-2"><i class="bi bi-book-fill"></i></span>
+                <span>Topic</span>
+              </a>
+            </li>
+            <li>
+              <a href="#source" class="nav-link px-3">
+                <span class="me-2"><i class="bi bi-book-fill"></i></span>
+                <span>Source</span>
+              </a>
+            </li>
+            <li>
+              <a href="#country" class="nav-link px-3">
+                <span class="me-2"><i class="bi bi-book-fill"></i></span>
+                <span>Country</span>
+              </a>
+            </li>
+            <li>
+              <a href="#startyear" class="nav-link px-3">
+                <span class="me-  2"><i class="bi bi-book-fill"></i></span>
+                <span>StratYear</span>
+              </a>
+            </li>
+
+            <li class="my-2">
               <hr class="dropdown-divider bg-light" />
             </li>
-            <li>
-              <div class="text-muted small fw-bold text-uppercase px-3 mb-3">
-                Addons
-              </div>
-            </li>
-            <li>
-              <a href="#" class="nav-link px-3">
-                <span class="me-2"><i class="bi bi-graph-up"></i></span>
-                <span>Charts</span>
-              </a>
-            </li>
-            <li>
-              <a href="#" class="nav-link px-3">
-                <span class="me-2"><i class="bi bi-table"></i></span>
-                <span>Tables</span>
-              </a>
+            <a href="#table" class="nav-link px-3">
+              <span class="me-2"><i class="bi bi-table"></i></span>
+              <span>Tables</span>
+            </a>
             </li>
           </ul>
         </nav>
       </div>
     </div>
     <!-- offcanvas -->
-    <main class="mt-5 pt-3 ">
+
+    <main class="mt-5 pt-3 bg-dark">
       <div class="container-fluid">
-        <div class="row">
+        <div class="row" id="dashboard">
           <div class="col-md-12">
-            <h4>Dashboard</h4>
+            <h4 class="text-light">Dashboard</h4>
           </div>
         </div>
-        <div class="row">
+        <div class="row gy-3">
+
           <div class="col-md-3 mb-3">
             <div class="card bg-primary text-white h-100">
-              <div class="card-body py-5">Primary Card</div>
-              <div class="card-footer d-flex">
-                View Details
-                <span class="ms-auto">
-                  <i class="bi bi-chevron-right"></i>
-                </span>
+              <div class="card-header">
+                Total Records
+              </div>
+              <div class="card-body py-5">
+                <h1>{{data_total}}</h1>
               </div>
             </div>
           </div>
+
           <div class="col-md-3 mb-3">
-            <div class="card bg-warning text-dark h-100">
-              <div class="card-body py-5">Warning Card</div>
-              <div class="card-footer d-flex">
-                View Details
-                <span class="ms-auto">
-                  <i class="bi bi-chevron-right"></i>
-                </span>
+            <div class="card bg-secondary text-white h-100">
+              <div class="card-header">
+                Total Country
+              </div>
+              <div class="card-body py-5">
+                <h1 class="">{{total_country}}</h1>
               </div>
             </div>
           </div>
+
+          <div class="col-md-3 mb-3">
+            <div class="card bg-info text-white h-100">
+              <div class="card-header">
+                Total Sector
+              </div>
+              <div class="card-body py-5">
+                <h1>{{tatal_sector}}</h1>
+              </div>
+            </div>
+          </div>
+
           <div class="col-md-3 mb-3">
             <div class="card bg-success text-white h-100">
-              <div class="card-body py-5">Success Card</div>
-              <div class="card-footer d-flex">
-                View Details
-                <span class="ms-auto">
-                  <i class="bi bi-chevron-right"></i>
-                </span>
+              <div class="card-body ">
+                Select Range To view data
+                <form action="" method="post">
+                  {% csrf_token %}
+                  <input type="number" class="form-control  mt-3 mb-2" placeholder="From: ...." name="start"
+                    value={{start}}>
+                  <input type="number" class="form-control mb-2" placeholder="TO: ...." name="end" value={{end}}>
+                  <input type="submit" value="save" class="form-control">
+                </form>
               </div>
-            </div>
-          </div>
-          <div class="col-md-3 mb-3">
-            <div class="card bg-danger text-white h-100">
-              <div class="card-body py-5">Danger Card</div>
-              <div class="card-footer d-flex">
-                View Details
-                <span class="ms-auto">
-                  <i class="bi bi-chevron-right"></i>
-                </span>
-              </div>
+
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-12">
+
+        <div class="row gy-3">
+          <div class="col-12" id="intensity">
             <!-- <div class="col-md-6 mb-3"> -->
             <div class="card h-100">
               <div class="card-header">
                 <span class="me-2"><i class="bi bi-bar-chart-fill"></i></span>
                 Intensity
               </div>
-              <div class="card-body">
-                <canvas class="chart" id="fstChart" width="400" height="200"></canvas>
+              <div class="card-body" style="height: 300px; width: 100%;">
+                <canvas class="chart" id="fstChart"></canvas>
               </div>
             </div>
           </div>
 
-          <div class="col-12">
+          <div class="col-12" id="likelihood">
             <!-- <div class="col-md-6 mb-3"> -->
             <div class="card h-100">
               <div class="card-header">
                 <span class="me-2"><i class="bi bi-bar-chart-fill"></i></span>
                 Likelihood
               </div>
-              <div class="card-body">
-                <canvas class="chart" id="likelihoodid" width="400" height="200"></canvas>
+              <div class="card-body" style="height: 300px; width: 100%;">
+                <canvas class=" chart" id="likelihoodid"></canvas>
               </div>
             </div>
           </div>
 
 
-          <div class="col-12">
+          <div class="col-12" id="impact">
             <!-- <div class="col-md-6 mb-3"> -->
             <div class="card h-100">
               <div class="card-header">
                 <span class="me-2"><i class="bi bi-bar-chart-fill"></i></span>
                 Impact
               </div>
-              <div class="card-body">
+              <div class="card-body" style="height: 300px; width: 100%;">
                 <canvas class="chart" id="impactid" width="400" height="200"></canvas>
               </div>
             </div>
           </div>
 
 
-          <div class="col-6">
+          <div class="col-6" id="sector">
             <!-- <div class="col-md-6 mb-3"> -->
             <div class="card h-100">
               <div class="card-header">
                 <span class="me-2"><i class="bi bi-bar-chart-fill"></i></span>
                 sector donout
               </div>
-              <div class="card-body">
+              <div class="card-body" style="height: 300px; width: 100%;">
                 <canvas class="chart" id="sector_id" width="200" height="200"></canvas>
               </div>
             </div>
           </div>
 
-          <div class="col-12">
-            <!-- <div class="col-md-6 mb-3"> -->
-            <div class="card h-100">
-              <div class="card-header">
-                <span class="me-2"><i class="bi bi-bar-chart-fill"></i></span>
-                Source
-              </div>
-              <div class="card-body">
-                <canvas class="chart" id="src_id" width="200" height="200"></canvas>
-              </div>
-            </div>
-          </div>
-
-
-          <div class="col-6">
-            <!-- <div class="col-md-6 mb-3"> -->
-            <div class="card h-100">
-              <div class="card-header">
-                <span class="me-2"><i class="bi bi-bar-chart-fill"></i></span>
-                country bar
-              </div>
-              <div class="card-body">
-                <canvas class="chart" id="country_id" width="200" height="200"></canvas>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-12">
-            <!-- <div class="col-md-6 mb-3"> -->
-            <div class="card h-100">
-              <div class="card-header">
-                <span class="me-2"><i class="bi bi-bar-chart-fill"></i></span>
-                start_end_year
-              </div>
-              <div class="card-body">
-                <canvas class="chart" id="st_end_yr" width="200" height="200"></canvas>
-              </div>
-            </div>
-          </div>
-
-
-          <div class="col-12">
+          <div class="col-6" id="topic">
             <!-- <div class="col-md-6 mb-3"> -->
             <div class="card h-100">
               <div class="card-header">
                 <span class="me-2"><i class="bi bi-bar-chart-fill"></i></span>
                 topic count
               </div>
-              <div class="card-body">
+              <div class="card-body" style="height: 300px; width: 100%;">
                 <canvas class="chart" id="topic_id" width="200" height="200"></canvas>
               </div>
             </div>
           </div>
 
+          <div class="col-12" id="source">
+            <!-- <div class="col-md-6 mb-3"> -->
+            <div class="card h-100">
+              <div class="card-header">
+                <span class="me-2"><i class="bi bi-bar-chart-fill"></i></span>
+                Source
+              </div>
+              <div class="card-body" style="height: 300px; width: 100%;">
+                <canvas class="chart" id="src_id" width="200" height="200"></canvas>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="col-6" id="country">
+            <!-- <div class="col-md-6 mb-3"> -->
+            <div class="card h-100">
+              <div class="card-header">
+                <span class="me-2"><i class="bi bi-bar-chart-fill"></i></span>
+                country bar
+              </div>
+              <div class="card-body" style="height: 300px; width: 100%;">
+                <canvas class="chart" id="country_id" width="200" height="200"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12" id="startyear">
+            <!-- <div class="col-md-6 mb-3"> -->
+            <div class="card h-100">
+              <div class="card-header">
+                <span class="me-2"><i class="bi bi-bar-chart-fill"></i></span>
+                start_end_year
+              </div>
+              <div class="card-body" style="height: 300px; width: 100%;">
+                <canvas class="chart" id="st_end_yr" width="200" height="200"></canvas>
+              </div>
+            </div>
+          </div>
+
+
+
+
         </div>
-        <div class="row">
+        <div class="row w-100 mt-3" id="table">
           <div class="col-md-12 mb-3">
             <div class="card">
               <div class="card-header">
@@ -306,7 +299,7 @@
               </div>
               <div class="card-body">
                 <div class="table-responsive">
-                  <table id="example" class="table table-striped data-table" style="width: 100%">
+                  <table id="example" class="table table-striped data-table w-100">
                     <thead>
                       <tr>
                         <th>ID</th>
@@ -318,8 +311,13 @@
                         <th>Country</th>
                         <th>Relevance</th>
                         <th>Pestle</th>
-                        <th>Source</th>
                         <th>Likelihood</th>
+                        <th>Topic</th>
+                        <th>Insight</th>
+                        <th>Impact</th>
+                        <th>Likelihood</th>
+                        <th>Source</th>
+                        <th>URL</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -335,22 +333,15 @@
                         <td>{{obj.country}}</td>
                         <td>{{obj.relevance}}</td>
                         <td>{{obj.pestle}}</td>
-                        <td>{{obj.source}}</td>
                         <td>{{obj.likelihood}}</td>
+                        <td>{{obj.topic}}</td>
+                        <td>{{obj.insight}}</td>
+                        <td>{{obj.impact}}</td>
+                        <td>{{obj.likelihood}}</td>
+                        <td>{{obj.source}}</td>
+                        <td>{{obj.url}}</td>
                       </tr>
                       {% endfor %}
-
-                    </tbody>
-                    <tfoot>
-                      <tr>
-                        <th>Name</th>
-                        <th>Position</th>
-                        <th>Office</th>
-                        <th>Age</th>
-                        <th>Start date</th>
-                        <th>Salary</th>
-                      </tr>
-                    </tfoot>
                   </table>
                 </div>
               </div>
@@ -374,6 +365,11 @@
 
 
     <script>
+      let start = Number('{{ start }}');
+      let end = Number('{{ end }}');
+
+      console.log(typeof (start), typeof (end));
+      console.log(start, end);
       // let title = {{ titles | safe }};
       let title = [{% for obj in data %} "{{obj.title}}", {% endfor %}];
 
@@ -390,23 +386,21 @@
       new Chart(ctx, {
         type: 'line',
         data: {
-          labels: id_list.slice(0, 50),
+          labels: id_list.slice(start, end),
           datasets: [{
             label: '# of Votes',
-            data: intensity.slice(0, 50),
+            data: intensity.slice(start, end),
             borderWidth: 1,
             fill: false,
-            borderColor: 'red',
+            // borderColor: 'red',
             tension: 0.1
           }]
         },
-        // options: {
-        //   scales: {
-        //     y: {
-        //       beginAtZero: true
-        //     }
-        //   }
-        // }
+        options: {
+          responsive: true,
+          maintainAspectRatio: false
+        }
+
 
       });
 
@@ -418,12 +412,25 @@
       new Chart(likelihoodid, {
         type: 'bar',
         data: {
-          labels: id_list.slice(0, 50),
+          labels: id_list.slice(start, end),
           datasets: [{
             label: '# of Votes',
-            data: likelihood.slice(0, 50),
+            data: likelihood.slice(start, end),
+            backgroundColor: [
+              'rgba(240, 20, 90, 0.8)',
+
+            ],
+            borderColor: [
+              'red'
+
+            ],
+            borderWidth: 2,
 
           }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false
         }
       });
 
@@ -438,15 +445,17 @@
         data: {
           labels: Object.keys(impact).slice(0, 100),
           datasets: [{
-            label: '# of Votes',
+            label: 'Impact',
             data: Object.values(impact).slice(0, 100),
             borderWidth: 1,
-            fill: false,
-            borderColor: 'red',
-            tension: 0.1
+            fill: true,
+            // borderColor: 'red',
+            // tension: 0.1
           }]
         },
         options: {
+          responsive: true,
+          maintainAspectRatio: false,
           scales: {
             y: {
               beginAtZero: true
@@ -472,96 +481,21 @@
             hoverOffset: 4
           }],
         },
-      });
-
-
-      // --------------------------------------------------------------------------------------------
-
-      const src_id = document.getElementById('src_id');
-      // let sector = [{% for obj in sector %} "{{sector.name}}", {% endfor %}];
-
-      let src_cnt = {{ src_count | safe}};
-
-
-      new Chart(src_id, {
-        type: 'bar',
-        data: {
-          labels: Object.keys(src_cnt),
-          datasets: [{
-            label: 'total',
-            data: Object.values(src_cnt),
-            hoverOffset: 4
-          }],
-        },
         options: {
-          indexAxis: 'y',
-        }
-      });
-      // ----------------------------------------------------
-
-      const country_id = document.getElementById('country_id');
-      // let sector = [{% for obj in sector %} "{{sector.name}}", {% endfor %}];
-
-      let country_cnt = {{ country_count | safe}};
-
-
-      new Chart(country_id, {
-        type: 'doughnut',
-        data: {
-          labels: Object.keys(country_cnt),
-          datasets: [{
-            label: 'total',
-            data: Object.values(country_cnt),
-            hoverOffset: 4
-          }],
-        },
-        options: {
-          indexAxis: 'y',
-        }
-      });
-      // ----------------------------------------------------
-
-
-
-
-      // ----------------------------------------------------
-
-      const st_end_yr = document.getElementById('st_end_yr');
-      start_year = {};
-      end_year = {};
-
-      {%for obj in data %}
-      {%if obj.start_year != '' and obj.end_year != '' %}
-      start_year['{{obj.id}}'] = {{ obj.start_year }};
-      end_year['{{obj.id}}'] = {{ obj.end_year }};
-      {% endif %}
-      {% endfor %}
-
-
-      new Chart(st_end_yr, {
-        type: 'bar',
-        data: {
-          labels: Object.keys(start_year).slice(0, 10),
-          datasets: [
-            {
-              label: 'start_year',
-              data: Object.values(start_year).slice(0, 10),
-              hoverOffset: 4
-            },
-            {
-              label: 'end_year',
-              data: Object.values(end_year).slice(0, 10),
-              hoverOffset: 4
+          plugins: {
+            legend: {
+              display: false // This hides all text in the legend and also the labels.
             }
-          ],
-        },
-        options: {
-          indexAxis: 'x',
-
+          },
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
         }
       });
-      // // ----------------------------------------------------
-
 
 
       // ----------------------------------------------------
@@ -575,20 +509,145 @@
       new Chart(topic_id, {
         type: 'bar',
         data: {
-          labels: Object.keys(topic).slice(0, 25),
+          labels: Object.keys(topic).slice(start, end / 5),
           datasets: [
             {
               label: 'Count',
-              data: Object.values(topic).slice(0, 25),
+              data: Object.values(topic).slice(start, end / 5),
               hoverOffset: 4
             },
           ],
         },
         options: {
           indexAxis: 'y',
+          responsive: true,
+          maintainAspectRatio: false,
 
         }
       });
+
+      // -----------------------------------
+
+
+
+      // --------------------------------------------------------------------------------------------
+
+      const src_id = document.getElementById('src_id');
+      // let sector = [{% for obj in sector %} "{{sector.name}}", {% endfor %}];
+
+      let src_cnt = {{ src_count | safe}};
+
+
+      new Chart(src_id, {
+        type: 'bar',
+        data: {
+          labels: Object.keys(src_cnt).slice(start, end / 5),
+          datasets: [{
+            label: 'total',
+            data: Object.values(src_cnt).slice(start, end / 5),
+            hoverOffset: 4
+          }],
+        },
+        options: {
+          indexAxis: 'y',
+          responsive: true,
+          maintainAspectRatio: false,
+        }
+      });
+      // ----------------------------------------------------
+
+
+
+      const country_id = document.getElementById('country_id');
+      // let sector = [{% for obj in sector %} "{{sector.name}}", {% endfor %}];
+
+      let country_cnt = {{ country_count | safe}};
+
+
+      new Chart(country_id, {
+        // type: 'doughnut',
+        type: 'pie',
+        data: {
+          labels: Object.keys(country_cnt).slice(start, end),
+          datasets: [{
+            label: 'total',
+            data: Object.values(country_cnt).slice(start, end),
+            hoverOffset: 4
+          }],
+        },
+        options: {
+          plugins: {
+            legend: {
+              // display: false // This hides all text in the legend and also the labels.
+              position: 'right',
+            }
+          },
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+
+      });
+      // ----------------------------------------------------
+
+
+
+
+      // ----------------------------------------------------
+
+      const st_end_yr = document.getElementById('st_end_yr');
+      start_year = {};
+      end_year = {};
+
+      {%for obj in data %}
+
+      // {% if obj.end_year > 2060 %} continue {% endif %}
+
+      {%if obj.start_year != '' and obj.end_year != ''  and obj.end_year < '2060' %}
+
+      start_year['{{obj.id}}'] = {{ obj.start_year }};
+      end_year['{{obj.id}}'] = {{ obj.end_year }};
+      {% endif %}
+      {% endfor %}
+
+
+      new Chart(st_end_yr, {
+        type: 'line',
+        data: {
+          labels: Object.keys(start_year).slice(start, end),
+          datasets: [
+            {
+              label: 'start_year',
+              data: Object.values(start_year).slice(start, end),
+              backgroundColor: ['rgba(255, 0, 0, 1)'],
+              borderColor: 'red',
+
+              hoverOffset: 4
+            },
+            {
+              label: 'end_year',
+              data: Object.values(end_year).slice(start, end),
+              backgroundColor: ['rgba(0, 0, 255, 1)'],
+              borderColor: 'blue',
+              hoverOffset: 4
+            }
+          ],
+        },
+        options: {
+          indexAxis: 'x',
+          responsive: true,
+          maintainAspectRatio: false,
+
+        }
+      });
+      // // ----------------------------------------------------
+
+
+
       // // ----------------------------------------------------
 
 
