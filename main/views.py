@@ -81,7 +81,6 @@ def home(request):
         end = request.POST.get('end')
         context['start'] = start
         context['end'] = end
-        print(context['start'], context['end'])
         return render(request ,'index.html', context)
 
 
@@ -95,8 +94,6 @@ import json
 def read_json(request): 
     if request.method == 'POST': 
         payload = json.loads(request.body)
-        print(payload[0])
-        print(payload[0].get('intensity'))
 
         created = None
 

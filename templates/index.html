@@ -111,7 +111,7 @@
             </li>
             <a href="#table" class="nav-link px-3">
               <span class="me-2"><i class="bi bi-table"></i></span>
-              <span>Tables</span>
+              <span>Table</span>
             </a>
             </li>
           </ul>
@@ -127,7 +127,7 @@
             <h4 class="text-light">Dashboard</h4>
           </div>
         </div>
-        <div class="row gy-3">
+        <div class="row row-cols-md-4 row-cols-sm-2 gy-3">
 
           <div class="col-md-3 mb-3">
             <div class="card bg-primary text-white h-100">
@@ -221,12 +221,12 @@
           </div>
 
 
-          <div class="col-6" id="sector">
+          <div class="col-md-6 col-sm-12" id="sector">
             <!-- <div class="col-md-6 mb-3"> -->
             <div class="card h-100">
               <div class="card-header">
                 <span class="me-2"><i class="bi bi-bar-chart-fill"></i></span>
-                sector donout
+                Sector
               </div>
               <div class="card-body" style="height: 300px; width: 100%;">
                 <canvas class="chart" id="sector_id" width="200" height="200"></canvas>
@@ -234,12 +234,12 @@
             </div>
           </div>
 
-          <div class="col-6" id="topic">
+          <div class="col-md-6 col-sm-12" id="topic">
             <!-- <div class="col-md-6 mb-3"> -->
             <div class="card h-100">
               <div class="card-header">
                 <span class="me-2"><i class="bi bi-bar-chart-fill"></i></span>
-                topic count
+                Topic
               </div>
               <div class="card-body" style="height: 300px; width: 100%;">
                 <canvas class="chart" id="topic_id" width="200" height="200"></canvas>
@@ -261,15 +261,28 @@
           </div>
 
 
-          <div class="col-6" id="country">
+          <div class="col-md-6 col-sm-12" id="country">
             <!-- <div class="col-md-6 mb-3"> -->
             <div class="card h-100">
               <div class="card-header">
                 <span class="me-2"><i class="bi bi-bar-chart-fill"></i></span>
-                country bar
+                Country
               </div>
               <div class="card-body" style="height: 300px; width: 100%;">
                 <canvas class="chart" id="country_id" width="200" height="200"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-sm-12" id="country">
+            <!-- <div class="col-md-6 mb-3"> -->
+            <div class="card h-100">
+              <div class="card-header">
+                <span class="me-2"><i class="bi bi-bar-chart-fill"></i></span>
+                Relevance
+              </div>
+              <div class="card-body" style="height: 300px; width: 100%;">
+                <canvas class="chart" id="relevance_id" width="200" height="200"></canvas>
               </div>
             </div>
           </div>
@@ -291,14 +304,14 @@
 
 
         </div>
-        <div class="row w-100 mt-3" id="table">
-          <div class="col-md-12 mb-3">
-            <div class="card">
+        <div class="row w-100 mt-3 mx-0 px-0" id="table">
+          <div class="col-md-12 mb-3 mx-0 px-0">
+            <div class="card mx-0 px-0">
               <div class="card-header">
                 <span><i class="bi bi-table me-2"></i></span> Data Table
               </div>
               <div class="card-body">
-                <div class="table-responsive">
+                <div class="table-responsive mx-0 px-0">
                   <table id="example" class="table table-striped data-table w-100">
                     <thead>
                       <tr>
@@ -368,8 +381,6 @@
       let start = Number('{{ start }}');
       let end = Number('{{ end }}');
 
-      console.log(typeof (start), typeof (end));
-      console.log(start, end);
       // let title = {{ titles | safe }};
       let title = [{% for obj in data %} "{{obj.title}}", {% endfor %}];
 
@@ -420,10 +431,9 @@
               'rgba(240, 20, 90, 0.8)',
 
             ],
-            borderColor: [
-              'red'
-
-            ],
+            // borderColor: [
+            //   'red'
+            // ],
             borderWidth: 2,
 
           }]
@@ -503,17 +513,16 @@
 
       topic = {{ tpk_count | safe }};
       const topic_id = document.getElementById('topic_id');
-      console.log(topic);
 
 
       new Chart(topic_id, {
         type: 'bar',
         data: {
-          labels: Object.keys(topic).slice(start, end / 5),
+          labels: Object.keys(topic).slice(start, end),
           datasets: [
             {
               label: 'Count',
-              data: Object.values(topic).slice(start, end / 5),
+              data: Object.values(topic).slice(start, end),
               hoverOffset: 4
             },
           ],
@@ -541,10 +550,10 @@
       new Chart(src_id, {
         type: 'bar',
         data: {
-          labels: Object.keys(src_cnt).slice(start, end / 5),
+          labels: Object.keys(src_cnt).slice(start, end),
           datasets: [{
             label: 'total',
-            data: Object.values(src_cnt).slice(start, end / 5),
+            data: Object.values(src_cnt).slice(start, end),
             hoverOffset: 4
           }],
         },
@@ -596,6 +605,50 @@
 
 
 
+      let relevance_data = {};
+      {%for obj in data %}
+
+      relevance_data['{{obj.id}}'] = '{{obj.relevance}}'
+      {% endfor %}
+
+
+      const relevance_id = document.getElementById('relevance_id');
+      // let sector = [{% for obj in sector %} "{{sector.name}}", {% endfor %}];
+
+
+
+      new Chart(relevance_id, {
+        // type: 'doughnut',
+        type: 'bar',
+        data: {
+          labels: Object.keys(relevance_data).slice(start, end),
+          datasets: [{
+            label: 'total',
+            data: Object.values(relevance_data).slice(start, end),
+            hoverOffset: 4
+          }],
+        },
+        options: {
+          plugins: {
+            legend: {
+              display: false, // This hides all text in the legend and also the labels.
+              position: 'right',
+            }
+          },
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+
+      });
+      // ----------------------------------------------------
+
+
+
 
       // ----------------------------------------------------
 
@@ -605,7 +658,6 @@
 
       {%for obj in data %}
 
-      // {% if obj.end_year > 2060 %} continue {% endif %}
 
       {%if obj.start_year != '' and obj.end_year != ''  and obj.end_year < '2060' %}
 
