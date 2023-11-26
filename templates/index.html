@@ -408,10 +408,20 @@
           }]
         },
         options: {
+          plugins: {
+            legend: {
+              display: false, // This hides all text in the legend and also the labels.
+              // position: 'right',
+            }
+          },
           responsive: true,
-          maintainAspectRatio: false
+          maintainAspectRatio: false,
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
         }
-
 
       });
 
@@ -439,8 +449,19 @@
           }]
         },
         options: {
+          plugins: {
+            legend: {
+              display: false, // This hides all text in the legend and also the labels.
+              // position: 'right',
+            }
+          },
           responsive: true,
-          maintainAspectRatio: false
+          maintainAspectRatio: false,
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
         }
       });
 
@@ -464,6 +485,12 @@
           }]
         },
         options: {
+          plugins: {
+            legend: {
+              display: false, // This hides all text in the legend and also the labels.
+              // position: 'right',
+            }
+          },
           responsive: true,
           maintainAspectRatio: false,
           scales: {
@@ -558,9 +585,19 @@
           }],
         },
         options: {
-          indexAxis: 'y',
+          plugins: {
+            legend: {
+              display: false, // This hides all text in the legend and also the labels.
+              // position: 'right',
+            }
+          },
           responsive: true,
           maintainAspectRatio: false,
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
         }
       });
       // ----------------------------------------------------
@@ -632,7 +669,7 @@
           plugins: {
             legend: {
               display: false, // This hides all text in the legend and also the labels.
-              position: 'right',
+              // position: 'right',
             }
           },
           responsive: true,
@@ -690,10 +727,19 @@
           ],
         },
         options: {
-          indexAxis: 'x',
+          plugins: {
+            legend: {
+              display: false, // This hides all text in the legend and also the labels.
+              // position: 'right',
+            }
+          },
           responsive: true,
           maintainAspectRatio: false,
-
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
         }
       });
       // // ----------------------------------------------------
