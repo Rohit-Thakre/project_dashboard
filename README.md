@@ -25,4 +25,11 @@ python manage.py createsuperuser
 http://127.0.0.1:8000/api/data/
 
 
+## To Create Db from Json
+TO accomplish this you will need Postman.exe
+feed the json data to this end point after running the server, the db will create it by itself.
+```
+http://127.0.0.1:8000/read_json/
+```
+
 
